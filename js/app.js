@@ -238,10 +238,12 @@
 
     // Endpoint Live API untuk Sinkronisasi Real-Time Instan (0 Detik)
     const AZURE_BASE_URL = 'https://portal-bahasa-inggris-admin-d4cbgafthwhgexb0.indonesiacentral-01.azurewebsites.net';
+    const FEBRIAN_BASE_URL = 'https://febrian.purelogic.my.id';
     const PURELOGIC_BASE_URL = 'https://fluxengineers.purelogic.my.id';
     let currentUploadsUrl = 'uploads/images/';
+    let currentBackendOrigin = '';
 
-    // Helper: Daftar Endpoint API Berdasarkan Lingkungan (Localhost vs Production)
+    // Helper: Daftar Endpoint API Berdasarkan Lingkungan (Localhost vs Production vs GitHub Pages)
     function getApiEndpoints() {
         const hostname = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname : '';
         const isStaticFrontend = hostname.includes('github.io') || 
@@ -249,9 +251,13 @@
                                  hostname.includes('netlify.app') || 
                                  hostname.includes('pages.dev');
 
-        // Jika berjalan di static hosting (GitHub Pages / Vercel), utamakan data JSON repositori sendiri!
+        // Di GitHub Pages / Vercel, ambil data real-time instan (0 detik) dari server utama terlebih dahulu,
+        // dengan fallback otomatis ke static JSON repositori jika server sedang offline.
         if (isStaticFrontend) {
-            return [];
+            return [
+                FEBRIAN_BASE_URL + '/api/data.php',
+                PURELOGIC_BASE_URL + '/api/data.php'
+            ];
         }
 
         const isLocalHost = (
@@ -273,14 +279,19 @@
 
         if (hostname.includes('purelogic.my.id')) {
             return [
+                (typeof window !== 'undefined' && window.location ? window.location.origin : FEBRIAN_BASE_URL) + '/api/data.php',
+                FEBRIAN_BASE_URL + '/api/data.php',
                 PURELOGIC_BASE_URL + '/api/data.php'
             ];
         }
 
-        return [];
+        return [
+            FEBRIAN_BASE_URL + '/api/data.php',
+            PURELOGIC_BASE_URL + '/api/data.php'
+        ];
     }
 
-    const CACHE_VERSION = 'v33_sync_master';
+    const CACHE_VERSION = 'v36_realtime_school_sync';
 
     // Helper: Pembersih Cache Usang (Validasi Struktur JSON & Purge Versi Lama)
     function sanitizeCachedStudents(rawJson) {
@@ -304,6 +315,43 @@
         }
     }
 
+    // Helper: Sinkronisasi Dua Arah Riwayat Sekolah Febrian dari portfolio_data.json ke objek student
+    function applyFebrianPortfolioSchoolSync(studentsList, pData) {
+        if (!Array.isArray(studentsList) || !pData || !Array.isArray(pData.riwayatSekolah)) return;
+        for (let s of studentsList) {
+            const sNim = String(s.nim || '').trim();
+            const sNama = (s.nama_lengkap || '').toLowerCase();
+            const sLink = (s.link || '').toLowerCase();
+            const isFeb = (sNim === '25090520047') || 
+                          (sNama.includes('febrian') && sNama.includes('alfarizzi')) || 
+                          sLink.includes('febrian-alfarizzi');
+            if (isFeb) {
+                if (!s.history_sekolah || typeof s.history_sekolah !== 'object') {
+                    s.history_sekolah = {};
+                }
+                if (pData.riwayatSekolah.length > 0) {
+                    const topSch = pData.riwayatSekolah[0];
+                    s.history_sekolah.nama_sekolah = (topSch && topSch.namaSekolah) ? String(topSch.namaSekolah).trim() : '';
+                    s.history_sekolah.link_sekolah = (topSch && topSch.linkSekolah) ? String(topSch.linkSekolah).trim() : '';
+                    s.history_sekolah.deskripsi_sekolah = (topSch && topSch.deskripsi) ? String(topSch.deskripsi).trim() : '';
+                    const rawLogo = (topSch && topSch.pathLogo) ? String(topSch.pathLogo).trim() : '';
+                    if (rawLogo) {
+                        s.history_sekolah.logo_sekolah = (rawLogo.startsWith('/data/') || rawLogo.startsWith('data/') || rawLogo.startsWith('http'))
+                            ? rawLogo
+                            : ('/data/febrian-alfarizzi/' + rawLogo.replace(/^\/+/, ''));
+                    } else {
+                        s.history_sekolah.logo_sekolah = '';
+                    }
+                } else {
+                    s.history_sekolah.nama_sekolah = '';
+                    s.history_sekolah.link_sekolah = '';
+                    s.history_sekolah.deskripsi_sekolah = '';
+                    s.history_sekolah.logo_sekolah = '';
+                }
+            }
+        }
+    }
+
     // Helper: Logo / Image URL (Mendukung Live URL dari Azure, Server Purelogic & Fallback Lokal)
     function resolveImageUrl(filename) {
         if (!filename) return '';
@@ -312,11 +360,14 @@
             return filename;
         }
 
-        if (filename.startsWith('/data/') || filename.startsWith('data/')) {
-            return getAppBaseUrl() + filename.replace(/^\/+/, '');
-        }
-        if (filename.startsWith('history school/') || filename.startsWith('/history school/')) {
-            return getAppBaseUrl() + 'data/febrian-alfarizzi/' + filename.replace(/^\/+/, '');
+        if (filename.startsWith('/data/') || filename.startsWith('data/') || filename.startsWith('history school/') || filename.startsWith('/history school/')) {
+            const rel = (filename.startsWith('history school/') || filename.startsWith('/history school/'))
+                ? ('data/febrian-alfarizzi/' + filename.replace(/^\/+/, ''))
+                : filename.replace(/^\/+/, '');
+            if (currentBackendOrigin && (currentBackendOrigin.startsWith('http://') || currentBackendOrigin.startsWith('https://'))) {
+                return currentBackendOrigin.replace(/\/+$/, '') + '/' + rel;
+            }
+            return getAppBaseUrl() + rel;
         }
 
         // 1. Jika berjalan di localhost / 127.0.0.1, selalu prioritaskan asset lokal uploads/images/
@@ -348,11 +399,37 @@
             return;
         }
 
+        if (cleanName.startsWith('/data/') || cleanName.startsWith('data/') || cleanName.startsWith('history school/') || cleanName.startsWith('/history school/')) {
+            const rel = cleanName.startsWith('history school') ? ('data/febrian-alfarizzi/' + cleanName.replace(/^\/+/, '')) : cleanName.replace(/^\/+/, '');
+            const candidates = [
+                FEBRIAN_BASE_URL + '/' + rel,
+                getAppBaseUrl() + rel,
+                PURELOGIC_BASE_URL + '/' + rel
+            ];
+            const step = parseInt(img.dataset.fallbackStep || '0', 10);
+            for (let i = step; i < candidates.length; i++) {
+                const nextUrl = candidates[i];
+                if (nextUrl && img.src !== nextUrl) {
+                    img.dataset.fallbackStep = String(i + 1);
+                    img.src = nextUrl;
+                    return;
+                }
+            }
+            img.style.display = 'none';
+            const fallbackSibling = img.parentElement ? img.parentElement.querySelector('.fallback-avatar, span') : null;
+            if (fallbackSibling) {
+                fallbackSibling.classList.remove('hidden');
+                fallbackSibling.style.display = 'flex';
+            }
+            return;
+        }
+
         const step = parseInt(img.dataset.fallbackStep || '0', 10);
         const candidates = [
+            FEBRIAN_BASE_URL + '/uploads/images/' + cleanName,
             getAppBaseUrl() + 'uploads/images/' + cleanName,
-            AZURE_BASE_URL + '/uploads/images/' + cleanName,
-            PURELOGIC_BASE_URL + '/uploads/images/' + cleanName
+            PURELOGIC_BASE_URL + '/uploads/images/' + cleanName,
+            AZURE_BASE_URL + '/uploads/images/' + cleanName
         ];
 
         // Coba kandidat berikutnya secara berurutan
@@ -380,12 +457,13 @@
      * 2. Fallback: Mengambil data static JSON dari GitHub Pages jika server backend offline.
      */
     async function fetchAllAppData() {
+        const ts = Date.now();
         const endpoints = getApiEndpoints();
         for (const ep of endpoints) {
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 2500);
-                const liveRes = await fetch(ep + '?_=' + Date.now(), { signal: controller.signal });
+                const liveRes = await fetch(ep + '?_=' + ts, { signal: controller.signal, cache: 'no-store' });
                 clearTimeout(timeoutId);
 
                 if (liveRes.ok) {
@@ -395,17 +473,38 @@
                             window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
                         ));
                         let upUrl = 'uploads/images/';
+                        let bOrigin = '';
                         if (!isLocal) {
-                            upUrl = json.uploads_url || (PURELOGIC_BASE_URL + '/uploads/images/');
+                            bOrigin = (json.base_url || FEBRIAN_BASE_URL).replace(/^http:\/\//, 'https://');
+                            upUrl = json.uploads_url || (bOrigin + '/uploads/images/');
                             if (upUrl.startsWith('http://')) {
                                 upUrl = upUrl.replace(/^http:\/\//, 'https://');
                             }
                         }
+                        currentBackendOrigin = bOrigin;
                         currentUploadsUrl = upUrl;
+
+                        const studentsList = Array.isArray(json.data.students) ? json.data.students : [];
+                        if (json.data.febrian_portfolio && Array.isArray(json.data.febrian_portfolio.riwayatSekolah)) {
+                            applyFebrianPortfolioSchoolSync(studentsList, json.data.febrian_portfolio);
+                        } else {
+                            try {
+                                const pOrigin = bOrigin || FEBRIAN_BASE_URL;
+                                const pCtrl = new AbortController();
+                                const pTid = setTimeout(() => pCtrl.abort(), 2000);
+                                const pRes = await fetch(pOrigin + '/data/febrian-alfarizzi/portfolio_data.json?_=' + ts, { signal: pCtrl.signal, cache: 'no-store' });
+                                clearTimeout(pTid);
+                                if (pRes.ok) {
+                                    const pData = await pRes.json();
+                                    applyFebrianPortfolioSchoolSync(studentsList, pData);
+                                }
+                            } catch (e) {}
+                        }
+
                         return {
                             source: ep.indexOf('8000') !== -1 ? 'local_simulation' : 'live_backend',
                             settings: json.data.settings || null,
-                            students: Array.isArray(json.data.students) ? json.data.students : [],
+                            students: studentsList,
                             groupTasks: Array.isArray(json.data.group_tasks) ? json.data.group_tasks : [],
                             individualTasks: Array.isArray(json.data.individual_tasks) ? json.data.individual_tasks : []
                         };
@@ -417,42 +516,20 @@
         }
 
         // Fallback ke Static JSON Lokal (GitHub Pages) dengan Path Absolut Aman
+        currentBackendOrigin = '';
         currentUploadsUrl = 'uploads/images/';
-        const ts = Date.now();
         const base = getAppBaseUrl();
-        const [settRes, studRes, grpRes, indRes] = await Promise.all([
-            fetch(base + 'data/site_settings.json?_=' + ts).then(r => r.ok ? r.json() : null).catch(() => null),
-            fetch(base + 'data/students.json?_=' + ts).then(r => r.ok ? r.json() : null).catch(() => null),
-            fetch(base + 'data/group_tasks.json?_=' + ts).then(r => r.ok ? r.json() : null).catch(() => null),
-            fetch(base + 'data/individual_tasks.json?_=' + ts).then(r => r.ok ? r.json() : null).catch(() => null)
+        const [settRes, studRes, grpRes, indRes, febPRes] = await Promise.all([
+            fetch(base + 'data/site_settings.json?_=' + ts, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+            fetch(base + 'data/students.json?_=' + ts, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+            fetch(base + 'data/group_tasks.json?_=' + ts, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+            fetch(base + 'data/individual_tasks.json?_=' + ts, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null),
+            fetch(base + 'data/febrian-alfarizzi/portfolio_data.json?_=' + ts, { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null)
         ]);
 
         const studentsList = Array.isArray(studRes) ? studRes : [];
-        for (let s of studentsList) {
-            const sNim = String(s.nim || '').trim();
-            const sNama = (s.nama_lengkap || '').toLowerCase();
-            const sLink = (s.link || '').toLowerCase();
-            const isFeb = (sNim === '25090520047') || 
-                          (sNama.includes('febrian') && sNama.includes('alfarizzi')) || 
-                          sLink.includes('febrian-alfarizzi');
-            if (isFeb && (!s.history_sekolah || !s.history_sekolah.nama_sekolah || s.history_sekolah.nama_sekolah.trim() === '')) {
-                try {
-                    const pRes = await fetch(base + 'data/febrian-alfarizzi/portfolio_data.json?_=' + ts);
-                    if (pRes.ok) {
-                        const pData = await pRes.json();
-                        if (pData && Array.isArray(pData.riwayatSekolah) && pData.riwayatSekolah.length > 0) {
-                            const topSch = pData.riwayatSekolah[0];
-                            if (topSch && topSch.namaSekolah) {
-                                if (!s.history_sekolah) s.history_sekolah = {};
-                                s.history_sekolah.nama_sekolah = topSch.namaSekolah;
-                                s.history_sekolah.link_sekolah = topSch.linkSekolah || '';
-                                s.history_sekolah.logo_sekolah = topSch.pathLogo || '';
-                                s.history_sekolah.deskripsi_sekolah = topSch.deskripsi || '';
-                            }
-                        }
-                    }
-                } catch(e) {}
-            }
+        if (febPRes) {
+            applyFebrianPortfolioSchoolSync(studentsList, febPRes);
         }
 
         return {
