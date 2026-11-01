@@ -49,5 +49,22 @@
             "deskripsi_sekolah": "",
             "logo_sekolah": ""
         }
+    },
+    {
+        "id": "std_010",
+        "tipe": "external",
+        "nama_lengkap": "Pasha Ibnu Wibowo",
+        "nim": "25090520031",
+        "link": "https://sites.google.com/view/fluxengineers/pasha-ibnu-wibowo",
+        "embed_code": "",
+        "deskripsi": "",
+        "foto_profil": "std_profile_1793559808_998.webp",
+        "foto_banner": "",
+        "history_sekolah": {
+            "nama_sekolah": "",
+            "link_sekolah": "",
+            "deskripsi_sekolah": "",
+            "logo_sekolah": ""
+        }
     }
 ]
