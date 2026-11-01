@@ -1,23 +1,5 @@
 [
     {
-        "id": "std_005",
-        "tipe": "manual",
-        "nama_lengkap": "Febrian Alfarizzi",
-        "nim": "25090520047",
-        "link": "/data/febrian-alfarizzi/index.html",
-        "embed_code": "",
-        "deskripsi": "Electrical Engineering",
-        "foto_profil": "",
-        "foto_banner": "",
-        "history_sekolah": {
-            "nama_sekolah": "Universitas Negeri Yogyakarta",
-            "link_sekolah": "https://www.uny.ac.id/",
-            "deskripsi_sekolah": "Universitas Negeri Yogyakarta (UNY) adalah salah satu Perguruan Tinggi Negeri (PTN) badan hukum atau berstatus unggul di Indonesia yang berpusat di Karangmalang, Yogyakarta.",
-            "logo_sekolah": "/data/febrian-alfarizzi/history school/university/logo.webp"
-        },
-        "deskripsi_alignment": "text-justify"
-    },
-    {
         "id": "std_007",
         "tipe": "external",
         "nama_lengkap": "Pasha Ibnu Wibowo",
