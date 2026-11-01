@@ -32,5 +32,22 @@
             "deskripsi_sekolah": "",
             "logo_sekolah": ""
         }
+    },
+    {
+        "id": "std_009",
+        "tipe": "external",
+        "nama_lengkap": "Fahreza Efendi",
+        "nim": "25090520010",
+        "link": "https://sites.google.com/view/fluxengineers/fahreza-efendi",
+        "embed_code": "",
+        "deskripsi": "",
+        "foto_profil": "std_profile_1793559764_538.webp",
+        "foto_banner": "",
+        "history_sekolah": {
+            "nama_sekolah": "",
+            "link_sekolah": "",
+            "deskripsi_sekolah": "",
+            "logo_sekolah": ""
+        }
     }
 ]
