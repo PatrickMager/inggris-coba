@@ -1,18 +1,5 @@
 [
     {
-        "id": "it_004",
-        "judul_tugas": "Project Photo Documentation",
-        "link_tugas": "http://googleusercontent.com/",
-        "sumber_link": "link",
-        "tanggal_upload": "2026-11-02",
-        "student_id": "std_011",
-        "deskripsi": "Visual documentation and infographics showcasing collaborative team project.",
-        "deskripsiAlignment": "text-justify",
-        "kategoriIkon": "foto",
-        "pathIcon": "",
-        "teksTombol": "View Photos"
-    },
-    {
         "id": "it_005",
         "judul_tugas": "hi",
         "link_tugas": "https://drive.google.com/drive/home",
