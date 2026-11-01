@@ -82,6 +82,7 @@
             "link_sekolah": "https://www.uny.ac.id/",
             "deskripsi_sekolah": "Universitas Negeri Yogyakarta (UNY) adalah salah satu Perguruan Tinggi Negeri (PTN) badan hukum atau berstatus unggul di Indonesia yang berpusat di Karangmalang, Yogyakarta.",
             "logo_sekolah": "/data/febrian-alfarizzi/history school/university/logo.webp"
-        }
+        },
+        "deskripsi_alignment": "text-justify"
     }
 ]
