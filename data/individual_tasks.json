@@ -50,5 +50,13 @@
         "kategoriIkon": "foto",
         "pathIcon": "",
         "teksTombol": "View Photos"
+    },
+    {
+        "id": "it_005",
+        "judul_tugas": "hi",
+        "link_tugas": "https://drive.google.com/drive/home",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-11-02",
+        "student_id": "std_011"
     }
 ]
