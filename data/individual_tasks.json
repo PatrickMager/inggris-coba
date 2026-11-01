@@ -1,18 +1,5 @@
 [
     {
-        "id": "it_001",
-        "judul_tugas": "English Video",
-        "link_tugas": "https://drive.google.com/",
-        "sumber_link": "drive",
-        "tanggal_upload": "2026-11-02",
-        "student_id": "std_011",
-        "deskripsi": "A conversational English video demonstrating a professional workplace scenario.",
-        "deskripsiAlignment": "text-justify",
-        "kategoriIkon": "video",
-        "pathIcon": "",
-        "teksTombol": "Watch Video"
-    },
-    {
         "id": "it_002",
         "judul_tugas": "Technical English Essay",
         "link_tugas": "https://docs.google.com/",
