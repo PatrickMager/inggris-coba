@@ -1,0 +1,86 @@
+[
+    {
+        "id": "it_002",
+        "judul_tugas": "Challenging",
+        "link_tugas": "https://drive.google.com/file/d/1MNFE0zpcDt-ij4Yu6YAf2-nRpAnBgqpx/preview",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-10-09",
+        "student_id": "std_004"
+    },
+    {
+        "id": "it_003",
+        "judul_tugas": "CV Fahreza",
+        "link_tugas": "https://drive.google.com/file/d/169zRHwzP8t0mV0PUSlokXDzyBBL__It5/preview",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-10-29",
+        "student_id": "std_004"
+    },
+    {
+        "id": "it_004",
+        "judul_tugas": "Task CV",
+        "link_tugas": "https://drive.google.com/file/d/1gRC5c98TqAqtHwnXSURXW2bW9JvIsc_6/preview",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-10-29",
+        "student_id": "std_006"
+    },
+    {
+        "id": "it_008",
+        "judul_tugas": "CV Pasha",
+        "link_tugas": "https://drive.google.com/file/d/1L1egxS6itg_GvqptvYRSeJpTwApJLDnf/preview",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-10-29",
+        "student_id": "std_007"
+    },
+    {
+        "id": "it_009",
+        "judul_tugas": "English Video",
+        "link_tugas": "https://drive.google.com/",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-11-01",
+        "student_id": "std_005",
+        "deskripsi": "A conversational English video demonstrating a professional workplace scenario.",
+        "deskripsiAlignment": "text-justify",
+        "kategoriIkon": "video",
+        "pathIcon": "",
+        "teksTombol": "Watch Video"
+    },
+    {
+        "id": "it_010",
+        "judul_tugas": "Technical English Essay",
+        "link_tugas": "https://docs.google.com/",
+        "sumber_link": "link",
+        "tanggal_upload": "2026-11-01",
+        "student_id": "std_005",
+        "deskripsi": "An academic essay detailing the transition to renewable energy systems.",
+        "deskripsiAlignment": "text-justify",
+        "kategoriIkon": "dokumen",
+        "pathIcon": "",
+        "teksTombol": "View Essay"
+    },
+    {
+        "id": "it_011",
+        "judul_tugas": "Project Pitch Presentation",
+        "link_tugas": "https://docs.google.com/",
+        "sumber_link": "link",
+        "tanggal_upload": "2026-11-01",
+        "student_id": "std_005",
+        "deskripsi": "A slide deck and video recording proposing a smart home IoT system.",
+        "deskripsiAlignment": "text-justify",
+        "kategoriIkon": "presentasi",
+        "pathIcon": "",
+        "teksTombol": "View Slides"
+    },
+    {
+        "id": "it_012",
+        "judul_tugas": "Project Photo Documentation",
+        "link_tugas": "http://googleusercontent.com/",
+        "sumber_link": "link",
+        "tanggal_upload": "2026-11-01",
+        "student_id": "std_005",
+        "deskripsi": "Visual documentation and infographics showcasing collaborative team project.",
+        "deskripsiAlignment": "text-justify",
+        "kategoriIkon": "foto",
+        "pathIcon": "",
+        "teksTombol": "View Photos"
+    }
+]
