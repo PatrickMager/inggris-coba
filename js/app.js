@@ -280,7 +280,7 @@
         return [];
     }
 
-    const CACHE_VERSION = 'v32_tasks_unified';
+    const CACHE_VERSION = 'v33_sync_master';
 
     // Helper: Pembersih Cache Usang (Validasi Struktur JSON & Purge Versi Lama)
     function sanitizeCachedStudents(rawJson) {
