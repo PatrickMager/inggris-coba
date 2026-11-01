@@ -1,18 +1,5 @@
 [
     {
-        "id": "it_003",
-        "judul_tugas": "Project Pitch Presentation",
-        "link_tugas": "https://docs.google.com/",
-        "sumber_link": "link",
-        "tanggal_upload": "2026-11-02",
-        "student_id": "std_011",
-        "deskripsi": "A slide deck and video recording proposing a smart home IoT system.",
-        "deskripsiAlignment": "text-justify",
-        "kategoriIkon": "presentasi",
-        "pathIcon": "",
-        "teksTombol": "View Slides"
-    },
-    {
         "id": "it_004",
         "judul_tugas": "Project Photo Documentation",
         "link_tugas": "http://googleusercontent.com/",
