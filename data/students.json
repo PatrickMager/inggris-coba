@@ -15,5 +15,22 @@
             "deskripsi_sekolah": "",
             "logo_sekolah": ""
         }
+    },
+    {
+        "id": "std_008",
+        "tipe": "external",
+        "nama_lengkap": "Khoirun Nisa Zahratuljannah",
+        "nim": "25090520006",
+        "link": "https://sites.google.com/view/fluxengineers/khoirun-nisa-zahratuljannah",
+        "embed_code": "",
+        "deskripsi": "",
+        "foto_profil": "std_profile_1793559692_416.webp",
+        "foto_banner": "",
+        "history_sekolah": {
+            "nama_sekolah": "",
+            "link_sekolah": "",
+            "deskripsi_sekolah": "",
+            "logo_sekolah": ""
+        }
     }
 ]
