@@ -49,16 +49,6 @@
     ],
     "tugas": [
         {
-            "id": "it_004",
-            "judul": "Project Photo Documentation",
-            "deskripsi": "Visual documentation and infographics showcasing collaborative team project.",
-            "deskripsiAlignment": "text-justify",
-            "kategoriIkon": "foto",
-            "pathIcon": "",
-            "teksTombol": "View Photos",
-            "linkTugas": "http://googleusercontent.com/"
-        },
-        {
             "id": "it_005",
             "judul": "hi",
             "deskripsi": "",
