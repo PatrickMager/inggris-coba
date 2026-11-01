@@ -84,5 +84,22 @@
             "logo_sekolah": "/data/febrian-alfarizzi/history school/university/logo.webp"
         },
         "deskripsi_alignment": "text-justify"
+    },
+    {
+        "id": "std_012",
+        "tipe": "manual",
+        "nama_lengkap": "Galang lindu aji",
+        "nim": "25090520049",
+        "link": "",
+        "embed_code": "",
+        "deskripsi": "",
+        "foto_profil": "std_profile_1793577323_353.webp",
+        "foto_banner": "",
+        "history_sekolah": {
+            "nama_sekolah": "",
+            "link_sekolah": "",
+            "deskripsi_sekolah": "",
+            "logo_sekolah": ""
+        }
     }
 ]
