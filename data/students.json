@@ -1,23 +1,5 @@
 [
     {
-        "id": "std_006",
-        "tipe": "manual",
-        "nama_lengkap": "Galang Lindu Aji",
-        "nim": "25090520049",
-        "link": "",
-        "embed_code": "",
-        "deskripsi": "Electrical Engineering",
-        "foto_profil": "",
-        "foto_banner": "",
-        "history_sekolah": {
-            "nama_sekolah": "SMAN 1 PRAMBANAN",
-            "link_sekolah": "https://www.sma1prambanan.sch.id",
-            "deskripsi_sekolah": "Sekolah Adiwiyata",
-            "logo_sekolah": "std_006_school_1793287928_244.webp"
-        },
-        "deskripsi_alignment": "text-justify"
-    },
-    {
         "id": "std_007",
         "tipe": "external",
         "nama_lengkap": "Pedro Elloice Valenthino Putranado",
