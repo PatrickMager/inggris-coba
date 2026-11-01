@@ -16,5 +16,22 @@
             "logo_sekolah": "std_006_school_1793287928_244.webp"
         },
         "deskripsi_alignment": "text-justify"
+    },
+    {
+        "id": "std_007",
+        "tipe": "external",
+        "nama_lengkap": "Pedro Elloice Valenthino Putranado",
+        "nim": "25090520004",
+        "link": "https://sites.google.com/view/fluxengineers/pedro-elloice-valenthino-putranado",
+        "embed_code": "",
+        "deskripsi": "",
+        "foto_profil": "std_profile_1793559580_636.webp",
+        "foto_banner": "",
+        "history_sekolah": {
+            "nama_sekolah": "",
+            "link_sekolah": "",
+            "deskripsi_sekolah": "",
+            "logo_sekolah": ""
+        }
     }
 ]
