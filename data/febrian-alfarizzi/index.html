@@ -387,7 +387,7 @@
         "nim": "25090520047",
         "jurusan": "Electrical Engineering",
         "pathFoto": "profil/profil.webp",
-        "deskripsi": "Electrical Engineering",
+        "deskripsi": "",
         "deskripsiAlignment": "text-justify",
         "fotoProfil": "",
         "kontak": [
@@ -423,24 +423,15 @@
     "riwayatSekolah": [
         {
             "jenjang": "University",
-            "namaSekolah": "Universitas Negeri Yogyakarta",
-            "linkSekolah": "https://www.uny.ac.id/",
+            "namaSekolah": "UNY",
+            "linkSekolah": "uny.ac.id",
             "pathLogo": "history school/university/logo.webp",
-            "deskripsi": "Universitas Negeri Yogyakarta (UNY) adalah salah satu Perguruan Tinggi Negeri (PTN) badan hukum atau berstatus unggul di Indonesia yang berpusat di Karangmalang, Yogyakarta.",
-            "deskripsiAlignment": "text-justify"
-        },
-        {
-            "jenjang": "High School Education",
-            "namaSekolah": "SMA Negeri 1 Jakenan",
-            "linkSekolah": "https://smanja.sch.id/",
-            "pathLogo": "",
-            "deskripsi": "SMA Negeri 1 Jakenan adalah lembaga pendidikan menengah atas negeri yang berlokasi di Jalan Jakenan - Winong KM 1,5, Kabupaten Pati, Jawa Tengah.",
+            "deskripsi": "hii",
             "deskripsiAlignment": "text-justify"
         }
     ],
     "tugas": [
         {
-            "id": "it_001",
             "judul": "English Video",
             "deskripsi": "A conversational English video demonstrating a professional workplace scenario.",
             "deskripsiAlignment": "text-justify",
@@ -450,7 +441,6 @@
             "linkTugas": "https://drive.google.com/"
         },
         {
-            "id": "it_002",
             "judul": "Technical English Essay",
             "deskripsi": "An academic essay detailing the transition to renewable energy systems.",
             "deskripsiAlignment": "text-justify",
@@ -460,7 +450,6 @@
             "linkTugas": "https://docs.google.com/"
         },
         {
-            "id": "it_003",
             "judul": "Project Pitch Presentation",
             "deskripsi": "A slide deck and video recording proposing a smart home IoT system.",
             "deskripsiAlignment": "text-justify",
@@ -470,7 +459,6 @@
             "linkTugas": "https://docs.google.com/"
         },
         {
-            "id": "it_004",
             "judul": "Project Photo Documentation",
             "deskripsi": "Visual documentation and infographics showcasing collaborative team project.",
             "deskripsiAlignment": "text-justify",
@@ -513,12 +501,40 @@
             foto: { colorConfig: { bg: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400', hoverBg: 'group-hover:bg-emerald-600 dark:group-hover:bg-emerald-600' }, svg: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>` }
         };
 
-        // FUNGSI FETCH DARI SERVER (Asinkron & Real-Time Sync)
+        // FUNGSI FETCH DARI SERVER (Asinkron & Real-Time Sync 0 Detik di GitHub Pages & Server)
+        let activePortfolioAssetBase = '';
         async function fetchPortfolioDataFromServer() {
+            const ts = Date.now();
+            const host = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname.toLowerCase() : '';
+            const isStaticHost = host.includes('github.io') || host.includes('vercel.app') || host.includes('netlify.app') || host.includes('pages.dev');
+
+            // 1. Jika dibuka di GitHub Pages / Static Hosting, prioritaskan data real-time langsung dari server utama
+            if (isStaticHost) {
+                const liveOrigins = [
+                    'https://febrian.purelogic.my.id/data/febrian-alfarizzi/',
+                    'https://fluxengineers.purelogic.my.id/data/febrian-alfarizzi/'
+                ];
+                for (const originBase of liveOrigins) {
+                    try {
+                        const ctrl = new AbortController();
+                        const tid = setTimeout(() => ctrl.abort(), 2500);
+                        const res = await fetch(originBase + 'portfolio_data.json?v=' + ts, { signal: ctrl.signal, cache: 'no-store' });
+                        clearTimeout(tid);
+                        if (res.ok) {
+                            const liveData = await res.json();
+                            if (liveData && liveData.profil && liveData.profil.namaLengkap) {
+                                activePortfolioAssetBase = originBase;
+                                return liveData;
+                            }
+                        }
+                    } catch (e) {}
+                }
+            }
+
             try {
-                // 1. Coba ambil data live terbaru dari portfolio_data.json
+                // 2. Ambil data dari portfolio_data.json relatif pada domain saat ini
                 try {
-                    const response = await fetch('portfolio_data.json?v=' + Date.now(), { cache: 'no-store' });
+                    const response = await fetch('portfolio_data.json?v=' + ts, { cache: 'no-store' });
                     if (response.ok) {
                         const liveData = await response.json();
                         if (liveData && liveData.profil && liveData.profil.namaLengkap) {
@@ -529,7 +545,7 @@
                     // Fallback jika dibuka via file:// lokal tanpa web server
                 }
 
-                // 2. Fallback instan ke PORTFOLIO_DATA internal
+                // 3. Fallback instan ke PORTFOLIO_DATA internal
                 if (typeof PORTFOLIO_DATA !== 'undefined' && PORTFOLIO_DATA) {
                     return PORTFOLIO_DATA;
                 }
@@ -620,7 +636,9 @@
                 }
                 let logoImgHtml = '';
                 if (item.pathLogo && item.pathLogo.trim() !== "") {
-                    logoImgHtml = `<img src="${item.pathLogo.trim()}" alt="School Logo" class="w-12 h-12 sm:w-14 sm:h-14 object-contain flex-shrink-0 group-hover:scale-105 transition-transform duration-300" loading="lazy">`;
+                    const rawLogoPath = item.pathLogo.trim().replace(/^\/+/, '');
+                    const primaryLogoSrc = activePortfolioAssetBase ? (activePortfolioAssetBase + rawLogoPath) : rawLogoPath;
+                    logoImgHtml = `<img src="${primaryLogoSrc}" data-local-src="${rawLogoPath}" alt="School Logo" class="w-12 h-12 sm:w-14 sm:h-14 object-contain flex-shrink-0 group-hover:scale-105 transition-transform duration-300" loading="lazy" onerror="if(this.src!==this.dataset.localSrc && !this.dataset.triedLocal){this.dataset.triedLocal='1';this.src=this.dataset.localSrc;}else if(!this.dataset.triedRemote){this.dataset.triedRemote='1';this.src='https://febrian.purelogic.my.id/data/febrian-alfarizzi/'+this.dataset.localSrc;}else{this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-display font-bold text-2xl flex-shrink-0',textContent:'🏫'}));}">`;
                 } else {
                     logoImgHtml = `<div class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center font-display font-bold text-2xl flex-shrink-0 group-hover:scale-105 transition-transform duration-300">🏫</div>`;
                 }

@@ -1,109 +1,87 @@
 [
     {
-        "id": "std_001",
+        "id": "std_007",
         "tipe": "external",
         "nama_lengkap": "Pedro Elloice Valenthino Putranado",
         "nim": "25090520004",
         "link": "https://sites.google.com/view/fluxengineers/pedro-elloice-valenthino-putranado",
         "embed_code": "",
         "deskripsi": "",
-        "foto_profil": "",
+        "foto_profil": "std_profile_1793559580_636.webp",
         "foto_banner": "",
         "history_sekolah": {
             "nama_sekolah": "",
             "link_sekolah": "",
             "deskripsi_sekolah": "",
             "logo_sekolah": ""
-        },
-        "deskripsi_alignment": "text-justify"
+        }
     },
     {
-        "id": "std_002",
+        "id": "std_008",
         "tipe": "external",
         "nama_lengkap": "Khoirun Nisa Zahratuljannah",
         "nim": "25090520006",
         "link": "https://sites.google.com/view/fluxengineers/khoirun-nisa-zahratuljannah",
         "embed_code": "",
         "deskripsi": "",
-        "foto_profil": "",
+        "foto_profil": "std_profile_1793559692_416.webp",
         "foto_banner": "",
         "history_sekolah": {
             "nama_sekolah": "",
             "link_sekolah": "",
             "deskripsi_sekolah": "",
             "logo_sekolah": ""
-        },
-        "deskripsi_alignment": "text-justify"
+        }
     },
     {
-        "id": "std_004",
+        "id": "std_009",
         "tipe": "external",
         "nama_lengkap": "Fahreza Efendi",
         "nim": "25090520010",
         "link": "https://sites.google.com/view/fluxengineers/fahreza-efendi",
         "embed_code": "",
         "deskripsi": "",
-        "foto_profil": "",
+        "foto_profil": "std_profile_1793559764_538.webp",
         "foto_banner": "",
         "history_sekolah": {
             "nama_sekolah": "",
             "link_sekolah": "",
             "deskripsi_sekolah": "",
             "logo_sekolah": ""
-        },
-        "deskripsi_alignment": "text-justify"
+        }
     },
     {
-        "id": "std_005",
-        "tipe": "manual",
-        "nama_lengkap": "Febrian Alfarizzi",
-        "nim": "25090520047",
-        "link": "/data/febrian-alfarizzi/index.html",
-        "embed_code": "",
-        "deskripsi": "Electrical Engineering",
-        "foto_profil": "",
-        "foto_banner": "",
-        "history_sekolah": {
-            "nama_sekolah": "Universitas Negeri Yogyakarta",
-            "link_sekolah": "https://www.uny.ac.id/",
-            "deskripsi_sekolah": "Universitas Negeri Yogyakarta (UNY) adalah salah satu Perguruan Tinggi Negeri (PTN) badan hukum atau berstatus unggul di Indonesia yang berpusat di Karangmalang, Yogyakarta.",
-            "logo_sekolah": "/data/febrian-alfarizzi/history school/university/logo.webp"
-        },
-        "deskripsi_alignment": "text-justify"
-    },
-    {
-        "id": "std_007",
+        "id": "std_010",
         "tipe": "external",
         "nama_lengkap": "Pasha Ibnu Wibowo",
         "nim": "25090520031",
         "link": "https://sites.google.com/view/fluxengineers/pasha-ibnu-wibowo",
         "embed_code": "",
         "deskripsi": "",
-        "foto_profil": "",
+        "foto_profil": "std_profile_1793559808_998.webp",
         "foto_banner": "",
         "history_sekolah": {
             "nama_sekolah": "",
             "link_sekolah": "",
             "deskripsi_sekolah": "",
             "logo_sekolah": ""
-        },
-        "deskripsi_alignment": "text-justify"
+        }
     },
     {
-        "id": "std_006",
+        "id": "std_011",
         "tipe": "manual",
-        "nama_lengkap": "Galang Lindu Aji",
-        "nim": "25090520049",
-        "link": "",
+        "nama_lengkap": "Febrian Alfarizzi",
+        "nim": "25090520047",
+        "link": "/data/febrian-alfarizzi/index.html",
         "embed_code": "",
-        "deskripsi": "Electrical Engineering",
-        "foto_profil": "",
+        "deskripsi": "",
+        "foto_profil": "std_profile_1793559837_735.webp",
         "foto_banner": "",
         "history_sekolah": {
-            "nama_sekolah": "SMAN 1 PRAMBANAN",
-            "link_sekolah": "https://www.sma1prambanan.sch.id",
-            "deskripsi_sekolah": "Sekolah Adiwiyata",
-            "logo_sekolah": "std_006_school_1793287928_244.webp"
+            "nama_sekolah": "UNY",
+            "link_sekolah": "uny.ac.id",
+            "deskripsi_sekolah": "hii",
+            "logo_sekolah": "/data/febrian-alfarizzi/history school/university/logo.webp"
         },
         "deskripsi_alignment": "text-justify"
     }

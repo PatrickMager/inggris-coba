@@ -4,7 +4,7 @@
         "nim": "25090520047",
         "jurusan": "Electrical Engineering",
         "pathFoto": "profil/profil.webp",
-        "deskripsi": "Electrical Engineering",
+        "deskripsi": "",
         "deskripsiAlignment": "text-justify",
         "fotoProfil": "",
         "kontak": [
@@ -40,24 +40,15 @@
     "riwayatSekolah": [
         {
             "jenjang": "University",
-            "namaSekolah": "Universitas Negeri Yogyakarta",
-            "linkSekolah": "https://www.uny.ac.id/",
+            "namaSekolah": "UNY",
+            "linkSekolah": "uny.ac.id",
             "pathLogo": "history school/university/logo.webp",
-            "deskripsi": "Universitas Negeri Yogyakarta (UNY) adalah salah satu Perguruan Tinggi Negeri (PTN) badan hukum atau berstatus unggul di Indonesia yang berpusat di Karangmalang, Yogyakarta.",
-            "deskripsiAlignment": "text-justify"
-        },
-        {
-            "jenjang": "High School Education",
-            "namaSekolah": "SMA Negeri 1 Jakenan",
-            "linkSekolah": "https://smanja.sch.id/",
-            "pathLogo": "",
-            "deskripsi": "SMA Negeri 1 Jakenan adalah lembaga pendidikan menengah atas negeri yang berlokasi di Jalan Jakenan - Winong KM 1,5, Kabupaten Pati, Jawa Tengah.",
+            "deskripsi": "hii",
             "deskripsiAlignment": "text-justify"
         }
     ],
     "tugas": [
         {
-            "id": "it_001",
             "judul": "English Video",
             "deskripsi": "A conversational English video demonstrating a professional workplace scenario.",
             "deskripsiAlignment": "text-justify",
@@ -67,7 +58,6 @@
             "linkTugas": "https://drive.google.com/"
         },
         {
-            "id": "it_002",
             "judul": "Technical English Essay",
             "deskripsi": "An academic essay detailing the transition to renewable energy systems.",
             "deskripsiAlignment": "text-justify",
@@ -77,7 +67,6 @@
             "linkTugas": "https://docs.google.com/"
         },
         {
-            "id": "it_003",
             "judul": "Project Pitch Presentation",
             "deskripsi": "A slide deck and video recording proposing a smart home IoT system.",
             "deskripsiAlignment": "text-justify",
@@ -87,7 +76,6 @@
             "linkTugas": "https://docs.google.com/"
         },
         {
-            "id": "it_004",
             "judul": "Project Photo Documentation",
             "deskripsi": "Visual documentation and infographics showcasing collaborative team project.",
             "deskripsiAlignment": "text-justify",
