@@ -420,17 +420,52 @@
         "Professional Presentations (PowerPoint)",
         "IoT & Arduino"
     ],
-    "riwayatSekolah": [],
+    "riwayatSekolah": [
+        {
+            "jenjang": "University",
+            "namaSekolah": "UNY",
+            "linkSekolah": "uny.ac.id",
+            "pathLogo": "history school/university/logo.webp",
+            "deskripsi": "hii",
+            "deskripsiAlignment": "text-justify"
+        }
+    ],
     "tugas": [
         {
-            "id": "it_007",
-            "judul": "CV Febrian",
-            "deskripsi": "",
+            "judul": "English Video",
+            "deskripsi": "A conversational English video demonstrating a professional workplace scenario.",
+            "deskripsiAlignment": "text-justify",
+            "kategoriIkon": "video",
+            "pathIcon": "",
+            "teksTombol": "Watch Video",
+            "linkTugas": "https://drive.google.com/"
+        },
+        {
+            "judul": "Technical English Essay",
+            "deskripsi": "An academic essay detailing the transition to renewable energy systems.",
             "deskripsiAlignment": "text-justify",
             "kategoriIkon": "dokumen",
             "pathIcon": "",
-            "teksTombol": "Buka Tugas",
-            "linkTugas": "https://drive.google.com/file/d/1AmeblBdo1Bs-Eie4BESJovIIQJSaOJFj/preview"
+            "teksTombol": "View Essay",
+            "linkTugas": "https://docs.google.com/"
+        },
+        {
+            "judul": "Project Pitch Presentation",
+            "deskripsi": "A slide deck and video recording proposing a smart home IoT system.",
+            "deskripsiAlignment": "text-justify",
+            "kategoriIkon": "presentasi",
+            "pathIcon": "",
+            "teksTombol": "View Slides",
+            "linkTugas": "https://docs.google.com/"
+        },
+        {
+            "judul": "Project Photo Documentation",
+            "deskripsi": "Visual documentation and infographics showcasing collaborative team project.",
+            "deskripsiAlignment": "text-justify",
+            "kategoriIkon": "foto",
+            "pathIcon": "",
+            "teksTombol": "View Photos",
+            "linkTugas": "http://googleusercontent.com/"
         }
     ],
     "kontak": [
@@ -468,6 +503,26 @@
 
         // FUNGSI FETCH DARI SERVER (Asinkron & Real-Time Sync 0 Detik di GitHub Pages & Server)
         let activePortfolioAssetBase = '';
+        function mergeIndividualTasksIntoPortfolio(pData, indList) {
+            if (!pData || !Array.isArray(indList)) return pData;
+            const febTasks = indList.filter(t => t && t.student_id === 'std_011');
+            if (febTasks.length > 0) {
+                pData.tugas = febTasks.map((t, idx) => {
+                    const existing = (Array.isArray(pData.tugas) && pData.tugas[idx]) ? pData.tugas[idx] : {};
+                    return {
+                        id: t.id || existing.id || '',
+                        judul: t.judul_tugas || existing.judul || '',
+                        deskripsi: (typeof t.deskripsi === 'string' && t.deskripsi !== '') ? t.deskripsi : (existing.deskripsi || ''),
+                        deskripsiAlignment: t.deskripsiAlignment || existing.deskripsiAlignment || 'text-justify',
+                        kategoriIkon: t.kategoriIkon || existing.kategoriIkon || 'dokumen',
+                        pathIcon: (typeof t.pathIcon === 'string') ? t.pathIcon : (existing.pathIcon || ''),
+                        teksTombol: (typeof t.teksTombol === 'string' && t.teksTombol.trim() !== '') ? t.teksTombol.trim() : (existing.teksTombol || 'Buka Tugas'),
+                        linkTugas: t.link_tugas || existing.linkTugas || ''
+                    };
+                });
+            }
+            return pData;
+        }
         async function fetchPortfolioDataFromServer() {
             const ts = Date.now();
             const host = (typeof window !== 'undefined' && window.location && window.location.hostname) ? window.location.hostname.toLowerCase() : '';
@@ -475,7 +530,24 @@
 
             // 1. Jika dibuka di GitHub Pages / Static Hosting, prioritaskan data real-time langsung dari server utama
             if (isStaticHost) {
+                const apiHosts = ['https://fluxengineers.purelogic.my.id', 'https://febrian.purelogic.my.id'];
+                for (const ah of apiHosts) {
+                    try {
+                        const ctrl = new AbortController();
+                        const tid = setTimeout(() => ctrl.abort(), 2500);
+                        const apiRes = await fetch(ah + '/api/data.php?_=' + ts, { signal: ctrl.signal, cache: 'no-store' });
+                        clearTimeout(tid);
+                        if (apiRes.ok) {
+                            const apiJson = await apiRes.json();
+                            if (apiJson && apiJson.status === 'success' && apiJson.data && apiJson.data.febrian_portfolio && apiJson.data.febrian_portfolio.profil) {
+                                activePortfolioAssetBase = ah + '/data/febrian-alfarizzi/';
+                                return mergeIndividualTasksIntoPortfolio(apiJson.data.febrian_portfolio, apiJson.data.individual_tasks);
+                            }
+                        }
+                    } catch (e) {}
+                }
                 const liveOrigins = [
+                    'https://fluxengineers.purelogic.my.id/data/febrian-alfarizzi/',
                     'https://febrian.purelogic.my.id/data/febrian-alfarizzi/',
                     'https://fluxengineers.purelogic.my.id/data/febrian-alfarizzi/'
                 ];
@@ -500,8 +572,13 @@
                 // 2. Ambil data dari portfolio_data.json relatif pada domain saat ini
                 try {
                     const response = await fetch('portfolio_data.json?v=' + ts, { cache: 'no-store' });
+                    let localIndList = null;
+                    try {
+                        const indRes = await fetch('../individual_tasks.json?v=' + ts, { cache: 'no-store' });
+                        if (indRes.ok) localIndList = await indRes.json();
+                    } catch (e) {}
                     if (response.ok) {
-                        const liveData = await response.json();
+                        const liveData = mergeIndividualTasksIntoPortfolio(await response.json(), localIndList);
                         if (liveData && liveData.profil && liveData.profil.namaLengkap) {
                             return liveData;
                         }
