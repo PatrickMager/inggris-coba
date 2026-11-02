@@ -30,5 +30,13 @@
         "sumber_link": "drive",
         "tanggal_upload": "2026-10-09",
         "student_id": "std_009"
+    },
+    {
+        "id": "it_005",
+        "judul_tugas": "CV Fahreza",
+        "link_tugas": "https://drive.google.com/file/d/169zRHwzP8t0mV0PUSlokXDzyBBL__It5/preview",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-10-29",
+        "student_id": "std_009"
     }
 ]
