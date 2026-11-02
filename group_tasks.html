@@ -187,7 +187,7 @@
                             <span>Home</span>
                         </a>
                         <!-- DAFTAR NAMA-NAMA MAHASISWA: FLEKSIBEL MENYUSUT & MENJADI TITIK-TITIK JIKA TIDAK MUAT (PERSIS BERANDA) -->
-                        <template x-if="!isGroupOnlySite">
+                        <template x-if="!(settings && settings.site_display_mode === 'group_only')">
                             <div class="contents">
                                 <template x-for="ns in students" :key="ns.id">
                                     <a :href="'detail.html?id=' + encodeURIComponent(ns.id)"
@@ -289,7 +289,7 @@
                     </a>
                 </div>
                 <!-- Group: Profil Mahasiswa -->
-                <div x-show="!isGroupOnlySite">
+                <div x-show="!(settings && settings.site_display_mode === 'group_only')">
                     <div class="flex items-center justify-between px-1 mb-2.5">
                         <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                             Anggota Mahasiswa (<span x-text="students.length"></span>)
