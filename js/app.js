@@ -291,7 +291,7 @@
         ];
     }
 
-    const CACHE_VERSION = 'v36_realtime_school_sync';
+    const CACHE_VERSION = 'v37_realtime_tasks_nav_sync';
 
     // Helper: Pembersih Cache Usang (Validasi Struktur JSON & Purge Versi Lama)
     function sanitizeCachedStudents(rawJson) {
@@ -1314,6 +1314,14 @@
                 this.selectStudent(targetId);
             },
 
+            get isGroupOnlySite() {
+                return !!(this.settings && this.settings.site_display_mode === 'group_only');
+            },
+
+            get isGroupOnlyMode() {
+                return this.isGroupOnlySite || !!(this.settings && this.settings.task_display_mode === 'group_only');
+            },
+
             goToDashboard() {
                 try {
                     window.location.href = 'index.html';
@@ -1726,6 +1734,14 @@
             searchQuery: '',
             selectedPlatform: 'all',
             viewMode: 'grid',
+            get isGroupOnlySite() {
+                return !!(this.settings && this.settings.site_display_mode === 'group_only');
+            },
+
+            get isGroupOnlyMode() {
+                return this.isGroupOnlySite || !!(this.settings && this.settings.task_display_mode === 'group_only');
+            },
+
             platformStats: {
                 total: 0,
                 drive: 0,
