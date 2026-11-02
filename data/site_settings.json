@@ -1,5 +1,5 @@
 {
-    "web_title": "Universitas Negeri",
+    "web_title": "Universitas Negeri Yogyakarta",
     "web_tagline": "Dashboard & Portfolio",
     "web_subtitle": "FLUXENGINEER",
     "web_badge": "Electrical Engginering",
@@ -16,10 +16,10 @@
     "group_task_badge": "Academic Collaboration",
     "group_task_title": "Group Tasks Archive & Documents",
     "group_task_desc": "Collection of presentation slides, speech videos, and academic coursework produced collaboratively by team members. Integrated directly with Google Drive and YouTube for instant access.",
-    "card_matakuliah_title": "Mata Kuliah Bahasa Inggris",
-    "card_matakuliah_desc": "Mencakup penulisan esai akademis, analisis jurnal, dan penyusunan slide presentasi kelompok secara profesional.",
-    "card_arsip_title": "Arsip Berkas Digital",
-    "card_arsip_desc": "Setiap dokumen kelompok dan individu tersimpan aman di server dan dapat langsung diunduh sewaktu-waktu.",
-    "card_pendidikan_title": "Riwayat Pendidikan",
-    "card_pendidikan_desc": "Menampilkan jejak sekolah menengah dan latar belakang pendidikan asal masing-masing anggota mahasiswa."
+    "card_matakuliah_title": "English Language Course",
+    "card_matakuliah_desc": "Includes writing academic essays, analyzing journals, and professionally preparing group presentation slides.",
+    "card_arsip_title": "Digital Archive",
+    "card_arsip_desc": "All group and individual documents are stored securely on the server and can be downloaded at any time.",
+    "card_pendidikan_title": "Educational background",
+    "card_pendidikan_desc": "Displaying the secondary school background and educational history of each student member."
 }
