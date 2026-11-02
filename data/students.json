@@ -48,7 +48,8 @@
             "link_sekolah": "",
             "deskripsi_sekolah": "",
             "logo_sekolah": ""
-        }
+        },
+        "deskripsi_alignment": "text-justify"
     },
     {
         "id": "std_010",
