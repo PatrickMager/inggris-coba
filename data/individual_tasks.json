@@ -53,7 +53,12 @@
         "link_tugas": "https://drive.google.com/file/d/1AmeblBdo1Bs-Eie4BESJovIIQJSaOJFj/preview",
         "sumber_link": "drive",
         "tanggal_upload": "2026-10-29",
-        "student_id": "std_011"
+        "student_id": "std_011",
+        "kategoriIkon": "dokumen",
+        "teksTombol": "Open CV",
+        "deskripsiAlignment": "text-justify",
+        "deskripsi": "",
+        "pathIcon": ""
     },
     {
         "id": "it_008",
@@ -61,6 +66,27 @@
         "link_tugas": "https://drive.google.com/file/d/1gRC5c98TqAqtHwnXSURXW2bW9JvIsc_6/preview",
         "sumber_link": "drive",
         "tanggal_upload": "2026-10-29",
+        "student_id": "std_012"
+    },
+    {
+        "id": "it_010",
+        "judul_tugas": "Bisnis Email",
+        "link_tugas": "https://drive.google.com/file/d/1T53W99btTWIvvt47U9Ngg71YBhicTKsW/preview",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-11-05",
+        "student_id": "std_011",
+        "kategoriIkon": "dokumen",
+        "teksTombol": "Open bisnis email",
+        "deskripsiAlignment": "text-justify",
+        "deskripsi": "",
+        "pathIcon": ""
+    },
+    {
+        "id": "it_011",
+        "judul_tugas": "Task Email Galang",
+        "link_tugas": "https://drive.google.com/file/d/1uO9UbG7J4hG8P6MoFKj99hKib4RoAAv-/preview",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-11-05",
         "student_id": "std_012"
     }
 ]
