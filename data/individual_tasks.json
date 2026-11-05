@@ -88,5 +88,13 @@
         "sumber_link": "drive",
         "tanggal_upload": "2026-11-05",
         "student_id": "std_012"
+    },
+    {
+        "id": "it_012",
+        "judul_tugas": "Bisnis Email Nisa",
+        "link_tugas": "https://drive.google.com/file/d/12Jfnc3DGWF4GRGPljphOvhjcMjMurZEs/preview",
+        "sumber_link": "drive",
+        "tanggal_upload": "2026-11-05",
+        "student_id": "std_008"
     }
 ]
