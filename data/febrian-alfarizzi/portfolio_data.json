@@ -46,8 +46,18 @@
             "deskripsiAlignment": "text-justify",
             "kategoriIkon": "dokumen",
             "pathIcon": "",
-            "teksTombol": "Buka Tugas",
+            "teksTombol": "Open CV",
             "linkTugas": "https://drive.google.com/file/d/1AmeblBdo1Bs-Eie4BESJovIIQJSaOJFj/preview"
+        },
+        {
+            "id": "it_010",
+            "judul": "Bisnis Email",
+            "deskripsi": "",
+            "deskripsiAlignment": "text-justify",
+            "kategoriIkon": "dokumen",
+            "pathIcon": "",
+            "teksTombol": "Open bisnis email",
+            "linkTugas": "https://drive.google.com/file/d/1T53W99btTWIvvt47U9Ngg71YBhicTKsW/preview"
         }
     ],
     "kontak": [

@@ -420,52 +420,27 @@
         "Professional Presentations (PowerPoint)",
         "IoT & Arduino"
     ],
-    "riwayatSekolah": [
-        {
-            "jenjang": "University",
-            "namaSekolah": "UNY",
-            "linkSekolah": "uny.ac.id",
-            "pathLogo": "history school/university/logo.webp",
-            "deskripsi": "hii",
-            "deskripsiAlignment": "text-justify"
-        }
-    ],
+    "riwayatSekolah": [],
     "tugas": [
         {
-            "judul": "English Video",
-            "deskripsi": "A conversational English video demonstrating a professional workplace scenario.",
-            "deskripsiAlignment": "text-justify",
-            "kategoriIkon": "video",
-            "pathIcon": "",
-            "teksTombol": "Watch Video",
-            "linkTugas": "https://drive.google.com/"
-        },
-        {
-            "judul": "Technical English Essay",
-            "deskripsi": "An academic essay detailing the transition to renewable energy systems.",
+            "id": "it_007",
+            "judul": "CV Febrian",
+            "deskripsi": "",
             "deskripsiAlignment": "text-justify",
             "kategoriIkon": "dokumen",
             "pathIcon": "",
-            "teksTombol": "View Essay",
-            "linkTugas": "https://docs.google.com/"
+            "teksTombol": "Open CV",
+            "linkTugas": "https://drive.google.com/file/d/1AmeblBdo1Bs-Eie4BESJovIIQJSaOJFj/preview"
         },
         {
-            "judul": "Project Pitch Presentation",
-            "deskripsi": "A slide deck and video recording proposing a smart home IoT system.",
+            "id": "it_010",
+            "judul": "Bisnis Email",
+            "deskripsi": "",
             "deskripsiAlignment": "text-justify",
-            "kategoriIkon": "presentasi",
+            "kategoriIkon": "dokumen",
             "pathIcon": "",
-            "teksTombol": "View Slides",
-            "linkTugas": "https://docs.google.com/"
-        },
-        {
-            "judul": "Project Photo Documentation",
-            "deskripsi": "Visual documentation and infographics showcasing collaborative team project.",
-            "deskripsiAlignment": "text-justify",
-            "kategoriIkon": "foto",
-            "pathIcon": "",
-            "teksTombol": "View Photos",
-            "linkTugas": "http://googleusercontent.com/"
+            "teksTombol": "Open bisnis email",
+            "linkTugas": "https://drive.google.com/file/d/1T53W99btTWIvvt47U9Ngg71YBhicTKsW/preview"
         }
     ],
     "kontak": [
@@ -569,7 +544,7 @@
             }
 
             try {
-                // 2. Ambil data dari portfolio_data.json relatif pada domain saat ini
+                    // 2. Ambil data dari portfolio_data.json relatif pada domain saat ini
                 try {
                     const response = await fetch('portfolio_data.json?v=' + ts, { cache: 'no-store' });
                     let localIndList = null;
