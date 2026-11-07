@@ -81,10 +81,10 @@
         "foto_profil": "std_profile_1793559837_735.webp",
         "foto_banner": "",
         "history_sekolah": {
-            "nama_sekolah": "",
-            "link_sekolah": "",
+            "nama_sekolah": "Universitas Negeri Yogyakarta",
+            "link_sekolah": "https://uny.ac.id",
             "deskripsi_sekolah": "",
-            "logo_sekolah": ""
+            "logo_sekolah": "/data/febrian-alfarizzi/history school/university/logo.webp"
         },
         "deskripsi_alignment": "text-justify"
     },
